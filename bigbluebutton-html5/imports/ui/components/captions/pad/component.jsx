@@ -44,7 +44,8 @@ const intlMessages = defineMessages({
   },
   dictationOffDesc: {
     id: 'app.captions.pad.dictationOffDesc',
-    description: 'Aria description for button that turns off speech recognition',
+    description:
+      'Aria description for button that turns off speech recognition',
   },
 });
 
@@ -64,7 +65,7 @@ const propTypes = {
 class Pad extends PureComponent {
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.ownerId !== nextProps.currentUserId) {
-      return ({ listening: false });
+      return { listening: false };
     }
     return null;
   }
@@ -84,11 +85,7 @@ class Pad extends PureComponent {
   }
 
   componentDidUpdate() {
-    const {
-      locale,
-      ownerId,
-      currentUserId,
-    } = this.props;
+    const { locale, ownerId, currentUserId } = this.props;
 
     if (this.recognition) {
       this.recognition.lang = locale;
@@ -97,23 +94,20 @@ class Pad extends PureComponent {
   }
 
   toggleListen() {
-    const {
-      listening,
-    } = this.state;
+    const { listening } = this.state;
 
-    this.setState({
-      listening: !listening,
-    }, this.handleListen);
+    this.setState(
+      {
+        listening: !listening,
+      },
+      this.handleListen
+    );
   }
 
   handleListen() {
-    const {
-      locale,
-    } = this.props;
+    const { locale } = this.props;
 
-    const {
-      listening,
-    } = this.state;
+    const { listening } = this.state;
 
     if (this.recognition) {
       // Starts and stops the recognition when listening.
@@ -128,10 +122,7 @@ class Pad extends PureComponent {
       let finalTranscript = '';
 
       this.recognition.onresult = (event) => {
-        const {
-          resultIndex,
-          results,
-        } = event;
+        const { resultIndex, results } = event;
 
         // Stores the first guess at what was recognised (Not always accurate).
         let interimTranscript = '';
@@ -161,10 +152,13 @@ class Pad extends PureComponent {
       };
 
       this.recognition.onerror = (event) => {
-        logger.error({
-          logCode: 'captions_recognition',
-          extraInfo: { error: event.error },
-        }, 'Captions pad error on recognition');
+        logger.error(
+          {
+            logCode: 'captions_recognition',
+            extraInfo: { error: event.error },
+          },
+          'Captions pad error on recognition'
+        );
       };
     }
   }
@@ -193,46 +187,51 @@ class Pad extends PureComponent {
         <header className={styles.header}>
           <div className={styles.title}>
             <Button
-              onClick={() => { Session.set('openPanel', 'userlist'); }}
+              onClick={() => {
+                Session.set('openPanel', 'userlist');
+              }}
               aria-label={intl.formatMessage(intlMessages.hide)}
               label={name}
               icon="left_arrow"
               className={styles.hideBtn}
             />
           </div>
-          {CaptionsService.canIDictateThisPad(ownerId)
-            ? (
-              <span>
-                <Button
-                  onClick={() => { this.toggleListen(); }}
-                  label={listening
+          {CaptionsService.canIDictateThisPad(ownerId) ? (
+            <span>
+              <Button
+                onClick={() => {
+                  this.toggleListen();
+                }}
+                label={
+                  listening
                     ? intl.formatMessage(intlMessages.dictationStop)
                     : intl.formatMessage(intlMessages.dictationStart)
-                  }
-                  aria-describedby="dictationBtnDesc"
-                  color="primary"
-                  disabled={!this.recognition}
-                />
-                <div id="dictationBtnDesc" hidden>
-                  {listening
-                    ? intl.formatMessage(intlMessages.dictationOffDesc)
-                    : intl.formatMessage(intlMessages.dictationOnDesc)
-                  }
-                </div>
-              </span>
-            ) : null
-          }
-          {CaptionsService.canIOwnThisPad(ownerId)
-            ? (
-              <Button
+                }
+                aria-describedby="dictationBtnDesc"
                 color="primary"
-                tooltipLabel={intl.formatMessage(intlMessages.takeOwnershipTooltip, { 0: name })}
-                onClick={() => { CaptionsService.takeOwnership(locale); }}
-                aria-label={intl.formatMessage(intlMessages.takeOwnership)}
-                label={intl.formatMessage(intlMessages.takeOwnership)}
+                disabled={!this.recognition}
               />
-            ) : null
-        }
+              <div id="dictationBtnDesc" hidden>
+                {listening
+                  ? intl.formatMessage(intlMessages.dictationOffDesc)
+                  : intl.formatMessage(intlMessages.dictationOnDesc)}
+              </div>
+            </span>
+          ) : null}
+          {CaptionsService.canIOwnThisPad(ownerId) ? (
+            <Button
+              color="primary"
+              tooltipLabel={intl.formatMessage(
+                intlMessages.takeOwnershipTooltip,
+                { 0: name }
+              )}
+              onClick={() => {
+                CaptionsService.takeOwnership(locale);
+              }}
+              aria-label={intl.formatMessage(intlMessages.takeOwnership)}
+              label={intl.formatMessage(intlMessages.takeOwnership)}
+            />
+          ) : null}
         </header>
         {listening ? (
           <div>
@@ -241,19 +240,23 @@ class Pad extends PureComponent {
             </span>
             <div
               className={styles.processing}
-              ref={(node) => { this.iterimResultContainer = node; }}
+              ref={(node) => {
+                this.iterimResultContainer = node;
+              }}
             />
           </div>
-        ) : null
-      }
-        <iframe
+        ) : null}
+
+        <p>Hello Caption</p>
+
+        {/* <iframe
           title="etherpad"
           src={url}
           aria-describedby="padEscapeHint"
         />
         <span id="padEscapeHint" className={styles.hint} aria-hidden>
           {intl.formatMessage(intlMessages.tip)}
-        </span>
+        </span> */}
       </div>
     );
   }
