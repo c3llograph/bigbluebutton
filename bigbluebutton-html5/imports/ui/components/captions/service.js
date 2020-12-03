@@ -92,7 +92,15 @@ const canIOwnThisPad = (ownerId) => {
 };
 
 const getSpeechRecognitionAPI = () =>
-  window.SpeechRecognition || window.webkitSpeechRecognition;
+  typeof window !== 'undefined' &&
+  (window.SpeechRecognition ||
+    window.webkitSpeechRecognition ||
+    window.mozSpeechRecognition ||
+    window.msSpeechRecognition ||
+    window.oSpeechRecognition);
+
+// const getSpeechRecognitionAPI = () =>
+// window.SpeechRecognition || window.webkitSpeechRecognition;
 
 const canIDictateThisPad = (ownerId) => {
   const { userID } = Auth;

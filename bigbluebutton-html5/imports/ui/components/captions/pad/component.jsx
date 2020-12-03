@@ -82,6 +82,7 @@ class Pad extends PureComponent {
 
     this.toggleListen = this.toggleListen.bind(this);
     this.handleListen = this.handleListen.bind(this);
+    this.handleListenTwo = this.handleListenTwo.bind(this);
   }
 
   componentDidUpdate() {
@@ -105,6 +106,66 @@ class Pad extends PureComponent {
   }
 
   handleListen() {
+    const { locale } = this.props;
+
+    const { listening } = this.state;
+
+    if (this.recognition) {
+      // Starts and stops the recognition when listening.
+      // Throws an error if start() is called on a recognition that has already been started.
+      if (listening) {
+        this.recognition.start();
+      } else {
+        this.recognition.stop();
+      }
+
+      // Stores the voice recognition results that have been verified.
+      let finalTranscript = '';
+
+      this.recognition.onresult = (event) => {
+        const { resultIndex, results } = event;
+
+        // Stores the first guess at what was recognised (Not always accurate).
+        let interimTranscript = '';
+
+        // Loops through the results to check if any of the entries have been validated,
+        // signaled by the isFinal flag.
+        for (let i = resultIndex; i < results.length; i += 1) {
+          const { transcript } = event.results[i][0];
+          if (results[i].isFinal) finalTranscript += `${transcript} `;
+          else interimTranscript += transcript;
+        }
+
+        // Adds the interimTranscript text to the iterimResultContainer to show
+        // what's being said while speaking.
+        if (this.iterimResultContainer) {
+          this.iterimResultContainer.innerHTML = interimTranscript;
+        }
+
+        const newEntry = finalTranscript !== '';
+
+        // Changes to the finalTranscript are shown to in the captions
+        if (newEntry) {
+          const text = finalTranscript.trimRight();
+          CaptionsService.appendText(text, locale);
+          finalTranscript = '';
+        }
+      };
+
+      this.recognition.onerror = (event) => {
+        logger.error(
+          {
+            logCode: 'captions_recognition',
+            extraInfo: { error: event.error },
+          },
+          'Captions pad error on recognition'
+        );
+      };
+    }
+  }
+
+  // * Handle Listen Two
+  handleListenTwo() {
     const { locale } = this.props;
 
     const { listening } = this.state;
