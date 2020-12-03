@@ -246,17 +246,10 @@ class Pad extends PureComponent {
             />
           </div>
         ) : null}
-
-        <p>Hello Caption</p>
-
-        {/* <iframe
-          title="etherpad"
-          src={url}
-          aria-describedby="padEscapeHint"
-        />
+        <iframe title="etherpad" src={url} aria-describedby="padEscapeHint" />
         <span id="padEscapeHint" className={styles.hint} aria-hidden>
           {intl.formatMessage(intlMessages.tip)}
-        </span> */}
+        </span>
       </div>
     );
   }

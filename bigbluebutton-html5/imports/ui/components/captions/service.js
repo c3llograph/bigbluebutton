@@ -17,10 +17,11 @@ const getActiveCaptions = () => {
   return activeCaptions;
 };
 
-const getCaptions = locale => Captions.findOne({
-  meetingId: Auth.meetingID,
-  padId: { $regex: `${CAPTIONS}${locale}$` },
-});
+const getCaptions = (locale) =>
+  Captions.findOne({
+    meetingId: Auth.meetingID,
+    padId: { $regex: `${CAPTIONS}${locale}$` },
+  });
 
 const getCaptionsData = () => {
   const activeCaptions = getActiveCaptions();
@@ -42,25 +43,28 @@ const getCaptionsData = () => {
 const getAvailableLocales = () => {
   const { meetingID } = Auth;
   const locales = [];
-  Captions.find({ meetingId: meetingID },
-    { fields: { ownerId: 1, locale: 1 } })
-    .forEach((caption) => {
-      if (caption.ownerId === '') {
-        locales.push(caption.locale);
-      }
-    });
+  Captions.find(
+    { meetingId: meetingID },
+    { fields: { ownerId: 1, locale: 1 } }
+  ).forEach((caption) => {
+    if (caption.ownerId === '') {
+      locales.push(caption.locale);
+    }
+  });
   return locales;
 };
 
 const getOwnedLocales = () => {
   const { meetingID } = Auth;
   const locales = [];
-  Captions.find({ meetingId: meetingID }, { fields: { ownerId: 1, locale: 1 } })
-    .forEach((caption) => {
-      if (caption.ownerId !== '') {
-        locales.push(caption.locale);
-      }
-    });
+  Captions.find(
+    { meetingId: meetingID },
+    { fields: { ownerId: 1, locale: 1 } }
+  ).forEach((caption) => {
+    if (caption.ownerId !== '') {
+      locales.push(caption.locale);
+    }
+  });
   return locales;
 };
 
@@ -70,7 +74,9 @@ const takeOwnership = (locale) => {
 
 const formatEntry = (entry) => {
   const letterIndex = entry.charAt(0) === ' ' ? 1 : 0;
-  const formattedEntry = `${entry.charAt(letterIndex).toUpperCase() + entry.slice(letterIndex + 1)}.\n\n`;
+  const formattedEntry = `${
+    entry.charAt(letterIndex).toUpperCase() + entry.slice(letterIndex + 1)
+  }.\n\n`;
   return formattedEntry;
 };
 
@@ -85,7 +91,8 @@ const canIOwnThisPad = (ownerId) => {
   return ownerId !== userID;
 };
 
-const getSpeechRecognitionAPI = () => window.SpeechRecognition || window.webkitSpeechRecognition;
+const getSpeechRecognitionAPI = () =>
+  window.SpeechRecognition || window.webkitSpeechRecognition;
 
 const canIDictateThisPad = (ownerId) => {
   const { userID } = Auth;
@@ -108,10 +115,16 @@ const getCaptionsSettings = () => {
   const settings = Session.get('captionsSettings');
   if (!settings) {
     const {
-      backgroundColor, fontColor, fontFamily, fontSize,
+      backgroundColor,
+      fontColor,
+      fontFamily,
+      fontSize,
     } = CAPTIONS_CONFIG;
     return {
-      backgroundColor, fontColor, fontFamily, fontSize,
+      backgroundColor,
+      fontColor,
+      fontFamily,
+      fontSize,
     };
   }
   return settings;
@@ -122,7 +135,7 @@ const isCaptionsEnabled = () => CAPTIONS_CONFIG.enabled;
 const isCaptionsAvailable = () => {
   if (isCaptionsEnabled) {
     const ownedLocales = getOwnedLocales();
-    return (ownedLocales.length > 0);
+    return ownedLocales.length > 0;
   }
   return false;
 };
@@ -130,7 +143,7 @@ const isCaptionsAvailable = () => {
 const isCaptionsActive = () => {
   const enabled = isCaptionsEnabled();
   const activated = getActiveCaptions() !== '';
-  return (enabled && activated);
+  return enabled && activated;
 };
 
 const deactivateCaptions = () => {
@@ -145,16 +158,17 @@ const activateCaptions = (locale, settings) => {
 const formatCaptionsText = (text) => {
   const splitText = text.split(LINE_BREAK);
   const filteredText = splitText.filter((line, index) => {
-    const lastLine = index === (splitText.length - 1);
+    const lastLine = index === splitText.length - 1;
     const emptyLine = line.length === 0;
-    return (!emptyLine || lastLine);
+    return !emptyLine || lastLine;
   });
   while (filteredText.length > CAPTIONS_CONFIG.lines) filteredText.shift();
   return filteredText.join(LINE_BREAK);
 };
 
-const amIModerator = () => Users.findOne({ userId: Auth.userID },
-  { fields: { role: 1 } }).role === ROLE_MODERATOR;
+const amIModerator = () =>
+  Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } }).role ===
+  ROLE_MODERATOR;
 
 const initSpeechRecognition = (locale) => {
   const SpeechRecognitionAPI = getSpeechRecognitionAPI();
