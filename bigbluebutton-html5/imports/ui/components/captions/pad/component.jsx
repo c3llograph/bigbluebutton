@@ -181,7 +181,7 @@ class Pad extends PureComponent {
 
     const { listening } = this.state;
     const url = PadService.getPadURL(padId, readOnlyPadId, ownerId);
-
+    console.log({ url });
     return (
       <div className={styles.pad}>
         <header className={styles.header}>

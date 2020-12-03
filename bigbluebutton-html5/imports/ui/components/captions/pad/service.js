@@ -11,7 +11,10 @@ const getLang = () => {
 
 const getPadParams = () => {
   const { config } = NOTE_CONFIG;
-  const User = Users.findOne({ userId: Auth.userID }, { fields: { name: 1, color: 1 } });
+  const User = Users.findOne(
+    { userId: Auth.userID },
+    { fields: { name: 1, color: 1 } }
+  );
   config.userName = User.name;
   config.userColor = User.color;
   config.lang = getLang();
@@ -29,6 +32,7 @@ const getPadURL = (padId, readOnlyPadId, ownerId) => {
   let url;
   if (!ownerId || (ownerId && userId === ownerId)) {
     const params = getPadParams();
+    console.log('I ran ');
     url = Auth.authenticateURL(`${NOTE_CONFIG.url}/p/${padId}?${params}`);
   } else {
     url = Auth.authenticateURL(`${NOTE_CONFIG.url}/p/${readOnlyPadId}`);
