@@ -61,7 +61,7 @@ class WriterMenu extends PureComponent {
     const { availableLocales, intl } = this.props;
 
     const candidate = availableLocales.filter(
-      l => l.locale.substring(0, 2) === intl.locale.substring(0, 2),
+      (l) => l.locale.substring(0, 2) === intl.locale.substring(0, 2)
     );
 
     this.state = {
@@ -88,11 +88,7 @@ class WriterMenu extends PureComponent {
   }
 
   render() {
-    const {
-      intl,
-      availableLocales,
-      closeModal,
-    } = this.props;
+    const { intl, availableLocales, closeModal } = this.props;
 
     const { locale } = this.state;
     const defaultLocale = locale || DEFAULT_VALUE;
@@ -110,9 +106,7 @@ class WriterMenu extends PureComponent {
           </h3>
         </header>
         <div className={styles.content}>
-          <label>
-            {intl.formatMessage(intlMessages.subtitle)}
-          </label>
+          <label>{intl.formatMessage(intlMessages.subtitle)}</label>
           <label
             aria-hidden
             htmlFor="captionsLangSelector"
@@ -127,7 +121,8 @@ class WriterMenu extends PureComponent {
             <option disabled key={DEFAULT_KEY} value={DEFAULT_VALUE}>
               {intl.formatMessage(intlMessages.select)}
             </option>
-            {availableLocales.map(localeItem => (
+            {console.log(availableLocales)}
+            {availableLocales.map((localeItem) => (
               <option key={localeItem.locale} value={localeItem.locale}>
                 {localeItem.name}
               </option>
@@ -141,7 +136,9 @@ class WriterMenu extends PureComponent {
             onClick={this.handleStart}
             disabled={locale == null}
           />
-          <div id="descriptionStart" hidden>{intl.formatMessage(intlMessages.ariaStartDesc)}</div>
+          <div id="descriptionStart" hidden>
+            {intl.formatMessage(intlMessages.ariaStartDesc)}
+          </div>
         </div>
       </Modal>
     );
