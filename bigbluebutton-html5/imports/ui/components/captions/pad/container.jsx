@@ -8,22 +8,18 @@ import Auth from '/imports/ui/services/auth';
 class PadContainer extends PureComponent {
   render() {
     const { children } = this.props;
-    return (
-      <Pad {...this.props}>
-        {children}
-      </Pad>
-    );
+    return <Pad {...this.props}>{children}</Pad>;
   }
 }
+
+//  TODO Here first of all Check what's locale on settings and
 
 export default withTracker(() => {
   const locale = Session.get('captionsLocale');
   const caption = CaptionsService.getCaptions(locale);
-  const {
-    padId,
-    ownerId,
-    readOnlyPadId,
-  } = caption;
+  const { padId, ownerId, readOnlyPadId } = caption;
+  console.log('padd running');
+  console.log({ local, caption });
 
   const { name } = caption ? caption.locale : '';
 
