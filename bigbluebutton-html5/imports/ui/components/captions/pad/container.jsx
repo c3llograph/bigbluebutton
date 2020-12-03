@@ -19,7 +19,7 @@ export default withTracker(() => {
   const caption = CaptionsService.getCaptions(locale);
   const { padId, ownerId, readOnlyPadId } = caption;
   console.log('padd running');
-  console.log({ local, caption });
+  console.log({ locale, caption });
 
   const { name } = caption ? caption.locale : '';
 
