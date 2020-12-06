@@ -10,7 +10,7 @@ public:
     clientTitle: BigBlueButton
     appName: BigBlueButton HTML5 Client
     bbbServerVersion: 2.2
-    copyright: '©2020 BigBlueButton Inc.'
+    copyright: '©2020 Pressply LLC.'
     html5ClientBuild: 1095
     helpLink: https://bigbluebutton.org/html5/
     lockOnJoin: true
@@ -442,7 +442,7 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: 8IbBnoDX8ja4aHMUv3UCj79Xro5G6QOuo493MyZmBLLBigNdiCb4kyvGnXJ7x
+    apikey: 7uKS0Ipt7jKMNuHgi1MGYwdX5MnUvnnwnpuskFJfd6ppoprB2O7mdjfEuHPghuR
     version: 1.2.13
     host: 127.0.0.1
     port: 9001
