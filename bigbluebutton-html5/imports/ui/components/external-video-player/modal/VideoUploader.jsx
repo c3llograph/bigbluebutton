@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Session } from 'meteor/session';
 
 const VideoUploaderTag = styled.form`
   width: 100%;
@@ -52,11 +53,19 @@ function VideoUploader(props) {
   const [url, setUrl] = useState('');
   const [isUploading, setIsUploading] = useState(false);
   const [fileName, setFileName] = useState('');
+  const [confName, setConfName] = useState('');
+  const [internalMeetingId, setInternalMeetingId] = useState('');
+
+  useEffect(() => {
+    console.log(Session);
+  }, []);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('external-video', file);
+    formData.append('confName', confName);
+    formData.append('internalMeetingId', internalMeetingId);
 
     const config = {
       headers: {
