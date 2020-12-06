@@ -57,7 +57,13 @@ function VideoUploader(props) {
   const [internalMeetingId, setInternalMeetingId] = useState('');
 
   useEffect(() => {
-    console.log(Session);
+    let meeting = sessionStorage.getItem('BBB_meetingID');
+    let confName = sessionStorage.getItem('BBB_confname');
+
+    console.log({
+      meeting,
+      confName,
+    });
   }, []);
 
   const onFormSubmit = (e) => {
