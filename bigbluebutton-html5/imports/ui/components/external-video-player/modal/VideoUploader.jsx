@@ -60,10 +60,8 @@ function VideoUploader(props) {
     let meeting = sessionStorage.getItem('BBB_meetingID');
     let confName = sessionStorage.getItem('BBB_confname');
 
-    console.log({
-      meeting,
-      confName,
-    });
+    setConfName(confName);
+    setInternalMeetingId(meeting);
   }, []);
 
   const onFormSubmit = (e) => {
