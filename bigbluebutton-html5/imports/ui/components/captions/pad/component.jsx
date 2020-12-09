@@ -166,6 +166,7 @@ class Pad extends PureComponent {
 
   componentDidMount() {
     this.toggleListen();
+    console.log('Toggled');
   }
 
   // * Handle Listen Two
