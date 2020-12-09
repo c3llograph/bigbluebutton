@@ -28,11 +28,11 @@ function CustomCaptionButton(props) {
 
   return (
     <>
-      <button type="button" onClick={handleCaptionsClick}>
-        Start CC
-      </button>
-      {console.log('Presenter')}
-      {console.log(amIPresenter())}
+      {amIPresenter() ? (
+        <button type="button" onClick={handleCaptionsClick}>
+          Start CC
+        </button>
+      ) : null}
     </>
   );
 }
