@@ -109,6 +109,7 @@ class Pad extends PureComponent {
 
   componentDidMount() {
     this.handleListen();
+    console.log({ listen: this.state.listening });
   }
 
   handleListen() {
