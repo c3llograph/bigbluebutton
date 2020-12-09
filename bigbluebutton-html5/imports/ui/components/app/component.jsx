@@ -235,6 +235,7 @@ class App extends Component {
   renderPanel() {
     const { enableResize } = this.state;
     const { openPanel, isRTL } = this.props;
+    console.log({ openPanel });
 
     return (
       <PanelManager
@@ -345,7 +346,7 @@ class App extends Component {
             {this.renderActionsBar()}
           </div>
           {this.renderPanel()}
-          {/* {this.renderSidebar()} */}
+          {this.renderSidebar()}
         </section>
         <BreakoutRoomInvitation />
         <PollingContainer />
