@@ -74,7 +74,6 @@ class ActionsBar extends PureComponent {
           {isCaptionsAvailable ? (
             <>
               <CaptionsButtonContainer {...{ intl }} />
-              <CustomDictationButtonContainer />
             </>
           ) : (
             <CustomCaptionButton />
