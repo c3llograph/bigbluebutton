@@ -8,12 +8,14 @@ function component({ locale, ownerId, name, amIModerator }) {
 
   const toggleListen = () => {
     setListening(!listening);
+    console.log({ listening });
     handleListen();
   };
 
   const handleListen = () => {
     if (listening) {
       recognition.start();
+      console.log('Dictation STarted');
     } else {
       recognition.stop();
     }
@@ -56,6 +58,7 @@ function component({ locale, ownerId, name, amIModerator }) {
           {listening ? 'Stop Dictation' : 'Start Dictation'}
         </button>
       ) : null}
+      {console.log(recognition)}
     </>
   );
 }
