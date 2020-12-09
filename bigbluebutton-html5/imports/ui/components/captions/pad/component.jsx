@@ -65,7 +65,7 @@ const propTypes = {
 class Pad extends PureComponent {
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.ownerId !== nextProps.currentUserId) {
-      return { listening: false };
+      return { listening: true };
     }
     return null;
   }
