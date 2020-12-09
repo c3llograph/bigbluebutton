@@ -335,8 +335,8 @@ class App extends Component {
             {this.renderMedia()}
             {this.renderActionsBar()}
           </div>
-          {this.renderPanel()}
-          {this.renderSidebar()}
+          {/* {this.renderPanel()}
+          {this.renderSidebar()} */}
         </section>
         <BreakoutRoomInvitation />
         <PollingContainer />
