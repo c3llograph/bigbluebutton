@@ -107,6 +107,10 @@ class Pad extends PureComponent {
     // );
   }
 
+  componentDidMount() {
+    this.handleListen();
+  }
+
   handleListen() {
     const { locale } = this.props;
 
