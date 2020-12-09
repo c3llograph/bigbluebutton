@@ -3,6 +3,7 @@ import CaptionsService from '/imports/ui/components/captions/service';
 import logger from '/imports/startup/client/logger';
 import PadService from '../pad/service';
 import { Session } from 'meteor/session';
+import { defineMessages, injectIntl } from 'react-intl';
 
 const intlMessages = defineMessages({
   hide: {
@@ -96,8 +97,10 @@ class component extends React.Component {
       // Throws an error if start() is called on a recognition that has already been started.
       if (listening) {
         this.recognition.start();
+        console.log('Dictation Start');
       } else {
         this.recognition.stop();
+        console.log('Dictation Stop');
       }
 
       // Stores the voice recognition results that have been verified.
@@ -128,6 +131,7 @@ class component extends React.Component {
         // Changes to the finalTranscript are shown to in the captions
         if (newEntry) {
           const text = finalTranscript.trimRight();
+          console.log(text);
           CaptionsService.appendText(text, locale);
           finalTranscript = '';
         }
