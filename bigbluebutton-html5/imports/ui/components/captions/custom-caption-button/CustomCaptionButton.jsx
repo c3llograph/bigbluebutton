@@ -5,6 +5,7 @@ import CaptionsWriterMenu from '/imports/ui/components/captions/writer-menu/cont
 import Auth from '/imports/ui/services/auth';
 import Users from '/imports/api/users';
 import { makeCall } from '/imports/ui/services/api';
+import { styles } from './styles';
 
 const USER_CONFIG = Meteor.settings.public.user;
 const ROLE_MODERATOR = USER_CONFIG.role_moderator;
@@ -29,8 +30,12 @@ function CustomCaptionButton(props) {
   return (
     <>
       {amIPresenter() ? (
-        <button type="button" onClick={handleCaptionsClick}>
-          Start CC
+        <button
+          className={styles.ccbtnclient}
+          type="button"
+          onClick={handleCaptionsClick}
+        >
+          CC
         </button>
       ) : null}
     </>

@@ -1,0 +1,20 @@
+@import '/imports/ui/stylesheets/variables/_all';
+@import '/imports/ui/components/modal/simple/styles';
+@import '/imports/ui/stylesheets/mixins/focus';
+
+.ccbtnclient {
+  border-radius: 50%;
+  height: 42px;
+  width: 42px;
+  background: transparent;
+  color: #fff;
+  padding: 5px;
+  border: 2px solid #58a9e3;
+  transition: all 0.5s ease-out;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 14px;
+}
+.ccbtnclient:hover {
+  background: #58a9e3;
+}
