@@ -3,7 +3,7 @@ import ActionsBarService from '/imports/ui/components/actions-bar/service';
 import { withModalMounter } from '/imports/ui/components/modal/service';
 import CaptionsWriterMenu from '/imports/ui/components/captions/writer-menu/container';
 
-const amIModerator = ActionsBarService.amIModerator();
+// const amIModerator = ActionsBarService.amIModerator();
 
 function CustomCaptionButton(props) {
   const handleCaptionsClick = () => {
