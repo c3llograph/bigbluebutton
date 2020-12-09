@@ -72,9 +72,7 @@ class ActionsBar extends PureComponent {
           ) : null}
           {isCaptionsAvailable ? (
             <CaptionsButtonContainer {...{ intl }} />
-          ) : (
-            <CustomCaptionButton />
-          )}
+          ) : null}
         </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
