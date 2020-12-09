@@ -27,6 +27,7 @@ function CustomCaptionButton(props) {
       <button type="button" onClick={handleCaptionsClick}>
         Start CC
       </button>
+      {console.log('Presenter')}
       {console.log(amIPresenter())}
     </>
   );
