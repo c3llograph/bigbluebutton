@@ -74,7 +74,7 @@ class Pad extends PureComponent {
     super(props);
 
     this.state = {
-      listening: false,
+      listening: true,
     };
 
     const { locale } = props;
