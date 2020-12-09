@@ -164,11 +164,6 @@ class Pad extends PureComponent {
     }
   }
 
-  componentDidMount() {
-    this.toggleListen();
-    console.log('Toggled');
-  }
-
   // * Handle Listen Two
   handleListenTwo() {
     const { locale } = this.props;
@@ -203,9 +198,9 @@ class Pad extends PureComponent {
 
         // Adds the interimTranscript text to the iterimResultContainer to show
         // what's being said while speaking.
-        if (this.iterimResultContainer) {
-          this.iterimResultContainer.innerHTML = interimTranscript;
-        }
+        // if (this.iterimResultContainer) {
+        //   this.iterimResultContainer.innerHTML = interimTranscript;
+        // }
 
         const newEntry = finalTranscript !== '';
 
