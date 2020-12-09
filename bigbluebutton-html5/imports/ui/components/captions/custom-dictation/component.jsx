@@ -34,6 +34,7 @@ function component({ locale, ownerId, name, amIModerator }) {
 
         if (newEntry) {
           const text = finalTranscript.trimRight();
+          console.log({ text });
           CaptionsService.appendText(text, locale);
           finalTranscript = '';
         }
