@@ -13,7 +13,9 @@ const propTypes = {
   requestUserInformation: PropTypes.func.isRequired,
 };
 
-const UserListContainer = props => <UserList {...props} />;
+// const UserListContainer = props => <UserList {...props} />;
+
+const UserListContainer = (props) => <h1>HI User Lst</h1>;
 
 UserListContainer.propTypes = propTypes;
 
@@ -29,7 +31,10 @@ export default withTracker(({ chatID, compact }) => ({
   handleEmojiChange: Service.setEmojiStatus,
   getEmojiList: Service.getEmojiList(),
   getEmoji: Service.getEmoji(),
-  showBranding: getFromUserSettings('bbb_display_branding_area', Meteor.settings.public.app.branding.displayBrandingArea),
+  showBranding: getFromUserSettings(
+    'bbb_display_branding_area',
+    Meteor.settings.public.app.branding.displayBrandingArea
+  ),
   hasPrivateChatBetweenUsers: Service.hasPrivateChatBetweenUsers,
   toggleUserLock: Service.toggleUserLock,
   requestUserInformation: Service.requestUserInformation,
