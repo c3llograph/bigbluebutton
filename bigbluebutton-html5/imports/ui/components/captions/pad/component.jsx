@@ -65,7 +65,7 @@ const propTypes = {
 class Pad extends PureComponent {
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.ownerId !== nextProps.currentUserId) {
-      return { listening: true };
+      return { listening: false };
     }
     return null;
   }
@@ -74,7 +74,7 @@ class Pad extends PureComponent {
     super(props);
 
     this.state = {
-      listening: true,
+      listening: false,
     };
 
     const { locale } = props;
@@ -103,11 +103,6 @@ class Pad extends PureComponent {
       },
       this.handleListen
     );
-  }
-
-  componentDidMount() {
-    this.handleListen();
-    console.log({ listen: this.state.listening });
   }
 
   handleListen() {
