@@ -8,6 +8,7 @@ import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions/container';
 import PresentationOptionsContainer from './presentation-options/component';
+import CustomCaptionButton from '../captions/custom-caption-button/CustomCaptionButton';
 
 class ActionsBar extends PureComponent {
   render() {
@@ -40,71 +41,63 @@ class ActionsBar extends PureComponent {
 
     actionBarClasses[styles.centerWithActions] = amIPresenter;
     actionBarClasses[styles.center] = true;
-    actionBarClasses[styles.mobileLayoutSwapped] = isLayoutSwapped && amIPresenter;
+    actionBarClasses[styles.mobileLayoutSwapped] =
+      isLayoutSwapped && amIPresenter;
 
     return (
       <div className={styles.actionsbar}>
         <div className={styles.left}>
-          <ActionsDropdown {...{
-            amIPresenter,
-            amIModerator,
-            isPollingEnabled,
-            allowExternalVideo,
-            handleTakePresenter,
-            intl,
-            isSharingVideo,
-            stopExternalVideoShare,
-            isMeteorConnected,
-          }}
+          <ActionsDropdown
+            {...{
+              amIPresenter,
+              amIModerator,
+              isPollingEnabled,
+              allowExternalVideo,
+              handleTakePresenter,
+              intl,
+              isSharingVideo,
+              stopExternalVideoShare,
+              isMeteorConnected,
+            }}
           />
-          {isPollingEnabled
-            ? (
-              <QuickPollDropdown
-                {...{
-                  currentSlidHasContent,
-                  intl,
-                  amIPresenter,
-                  parseCurrentSlideContent,
-                }}
-              />
-            ) : null
-          }
-          {isCaptionsAvailable
-            ? (
-              <CaptionsButtonContainer {...{ intl }} />
-            )
-            : null
-          }
+          {isPollingEnabled ? (
+            <QuickPollDropdown
+              {...{
+                currentSlidHasContent,
+                intl,
+                amIPresenter,
+                parseCurrentSlideContent,
+              }}
+            />
+          ) : null}
+          {isCaptionsAvailable ? (
+            <CaptionsButtonContainer {...{ intl }} />
+          ) : null}
+          <CustomCaptionButton />
         </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
-          {enableVideo
-            ? (
-              <JoinVideoOptionsContainer />
-            )
-            : null}
-          <DesktopShare {...{
-            handleShareScreen,
-            handleUnshareScreen,
-            isVideoBroadcasting,
-            amIPresenter,
-            screenSharingCheck,
-            screenShareEndAlert,
-            isMeteorConnected,
-            screenshareDataSavingSetting,
-          }}
+          {enableVideo ? <JoinVideoOptionsContainer /> : null}
+          <DesktopShare
+            {...{
+              handleShareScreen,
+              handleUnshareScreen,
+              isVideoBroadcasting,
+              amIPresenter,
+              screenSharingCheck,
+              screenShareEndAlert,
+              isMeteorConnected,
+              screenshareDataSavingSetting,
+            }}
           />
         </div>
         <div className={styles.right}>
-          {isLayoutSwapped
-            ? (
-              <PresentationOptionsContainer
-                toggleSwapLayout={toggleSwapLayout}
-                isThereCurrentPresentation={isThereCurrentPresentation}
-              />
-            )
-            : null
-          }
+          {isLayoutSwapped ? (
+            <PresentationOptionsContainer
+              toggleSwapLayout={toggleSwapLayout}
+              isThereCurrentPresentation={isThereCurrentPresentation}
+            />
+          ) : null}
         </div>
       </div>
     );

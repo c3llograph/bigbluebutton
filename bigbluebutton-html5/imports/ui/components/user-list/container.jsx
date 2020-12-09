@@ -13,9 +13,9 @@ const propTypes = {
   requestUserInformation: PropTypes.func.isRequired,
 };
 
-// const UserListContainer = props => <UserList {...props} />;
+const UserListContainer = props => <UserList {...props} />;
 
-const UserListContainer = (props) => <h1>HI User Lst</h1>;
+// const UserListContainer = (props) => <h1>HI User Lst</h1>;
 
 UserListContainer.propTypes = propTypes;
 
