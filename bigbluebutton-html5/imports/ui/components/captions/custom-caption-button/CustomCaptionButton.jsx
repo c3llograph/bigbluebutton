@@ -10,11 +10,17 @@ function CustomCaptionButton(props) {
     const { mountModal } = props;
     mountModal(<CaptionsWriterMenu />);
   };
-  return (
-    <button type="button" onClick={handleCaptionsClick}>
-      Start CC
-    </button>
-  );
+
+  const renderButton = () => {
+    setTimeout(() => {
+      return (
+        <button type="button" onClick={handleCaptionsClick}>
+          Start CC
+        </button>
+      );
+    }, 4000);
+  };
+  return <>{renderButton}</>;
 }
 
 export default withModalMounter(CustomCaptionButton);
