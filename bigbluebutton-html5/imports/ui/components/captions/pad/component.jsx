@@ -97,14 +97,12 @@ class Pad extends PureComponent {
   toggleListen() {
     const { listening } = this.state;
 
-    this.handleListen();
-
-    // this.setState(
-    //   {
-    //     listening: !listening,
-    //   },
-    //   this.handleListen
-    // );
+    this.setState(
+      {
+        listening: !listening,
+      },
+      this.handleListen
+    );
   }
 
   componentDidMount() {
@@ -205,9 +203,9 @@ class Pad extends PureComponent {
 
         // Adds the interimTranscript text to the iterimResultContainer to show
         // what's being said while speaking.
-        // if (this.iterimResultContainer) {
-        //   this.iterimResultContainer.innerHTML = interimTranscript;
-        // }
+        if (this.iterimResultContainer) {
+          this.iterimResultContainer.innerHTML = interimTranscript;
+        }
 
         const newEntry = finalTranscript !== '';
 
@@ -301,7 +299,7 @@ class Pad extends PureComponent {
             />
           ) : null}
         </header>
-        {/* {listening ? (
+        {listening ? (
           <div>
             <span className={styles.interimTitle}>
               {intl.formatMessage(intlMessages.interimResult)}
@@ -313,7 +311,7 @@ class Pad extends PureComponent {
               }}
             />
           </div>
-        ) : null} */}
+        ) : null}
         <iframe title="etherpad" src={url} aria-describedby="padEscapeHint" />
         <span id="padEscapeHint" className={styles.hint} aria-hidden>
           {intl.formatMessage(intlMessages.tip)}

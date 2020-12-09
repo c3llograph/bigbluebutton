@@ -9,6 +9,7 @@ import JoinVideoOptionsContainer from '../video-provider/video-button/container'
 import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions/container';
 import PresentationOptionsContainer from './presentation-options/component';
 import CustomCaptionButton from '../captions/custom-caption-button/CustomCaptionButton';
+import CustomDictationButtonContainer from '../captions/custom-dictation/container';
 
 class ActionsBar extends PureComponent {
   render() {
@@ -71,7 +72,10 @@ class ActionsBar extends PureComponent {
             />
           ) : null}
           {isCaptionsAvailable ? (
-            <CaptionsButtonContainer {...{ intl }} />
+            <>
+              <CaptionsButtonContainer {...{ intl }} />
+              <CustomDictationButtonContainer />
+            </>
           ) : (
             <CustomCaptionButton />
           )}
