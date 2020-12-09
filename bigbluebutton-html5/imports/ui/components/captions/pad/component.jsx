@@ -97,12 +97,14 @@ class Pad extends PureComponent {
   toggleListen() {
     const { listening } = this.state;
 
-    this.setState(
-      {
-        listening: !listening,
-      },
-      this.handleListen
-    );
+    this.handleListen();
+
+    // this.setState(
+    //   {
+    //     listening: !listening,
+    //   },
+    //   this.handleListen
+    // );
   }
 
   handleListen() {
