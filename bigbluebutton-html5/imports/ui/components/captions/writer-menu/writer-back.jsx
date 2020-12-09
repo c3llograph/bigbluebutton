@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Modal from '/imports/ui/components/modal/simple/component';
 import Button from '/imports/ui/components/button/component';
 import { styles } from './styles';
-import CaptionsService from '/imports/ui/components/captions/service';
 
 const DEFAULT_VALUE = 'select';
 

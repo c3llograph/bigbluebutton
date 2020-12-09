@@ -74,7 +74,7 @@ class Pad extends PureComponent {
     super(props);
 
     this.state = {
-      listening: true,
+      listening: false,
     };
 
     const { locale } = props;
@@ -162,6 +162,10 @@ class Pad extends PureComponent {
         );
       };
     }
+  }
+
+  componentDidMount() {
+    this.toggleListen();
   }
 
   // * Handle Listen Two
