@@ -19,7 +19,11 @@ function CustomCaptionButton(props) {
   };
 
   const amIPresenter = () => {
-    return Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
+    let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
+
+    let isPresenter = user.role === ROLE_MODERATOR;
+
+    return isPresenter;
   };
 
   return (
