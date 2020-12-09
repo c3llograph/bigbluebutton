@@ -105,19 +105,6 @@ class Pad extends PureComponent {
     );
   }
 
-  componentDidMount() {
-    const { listening } = this.state;
-
-    console.log({ listen: listening });
-
-    this.setState(
-      {
-        listening: !listening,
-      },
-      this.handleListen
-    );
-  }
-
   handleListen() {
     const { locale } = this.props;
 
@@ -307,7 +294,7 @@ class Pad extends PureComponent {
             />
           ) : null}
         </header>
-        {listening ? (
+        {/* {listening ? (
           <div>
             <span className={styles.interimTitle}>
               {intl.formatMessage(intlMessages.interimResult)}
@@ -319,7 +306,7 @@ class Pad extends PureComponent {
               }}
             />
           </div>
-        ) : null}
+        ) : null} */}
         <iframe title="etherpad" src={url} aria-describedby="padEscapeHint" />
         <span id="padEscapeHint" className={styles.hint} aria-hidden>
           {intl.formatMessage(intlMessages.tip)}
