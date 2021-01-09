@@ -36,10 +36,10 @@ const VotePresentationModal = (props) => {
 };
 
 function CatchUpPoll(props) {
-  //   const handleFeedbackModal = () => {
-  //     const { mountModal } = props;
-  //     mountModal(<VotePresentationModal />);
-  //   };
+  const handleFeedbackModal = () => {
+    const { mountModal } = props;
+    mountModal(<VotePresentationModal />);
+  };
   const amIPresenter = () => {
     let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
 
@@ -53,7 +53,7 @@ function CatchUpPoll(props) {
         <button
           className={styles.ccbtnclient}
           type="button"
-          //   onClick={handleFeedbackModal}
+          onClick={handleFeedbackModal}
         >
           Vote
         </button>
@@ -62,4 +62,4 @@ function CatchUpPoll(props) {
   );
 }
 
-export default CatchUpPoll;
+export default withModalMounter(CatchUpPoll);
