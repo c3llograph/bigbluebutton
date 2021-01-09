@@ -10,6 +10,7 @@ import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions
 import PresentationOptionsContainer from './presentation-options/component';
 import CustomCaptionButton from '../captions/custom-caption-button/CustomCaptionButton';
 import CustomDictationButtonContainer from '../captions/custom-dictation/container';
+import CatchUpPoll from '../catchup-poll/CatchUpPoll';
 
 class ActionsBar extends PureComponent {
   render() {
@@ -78,6 +79,7 @@ class ActionsBar extends PureComponent {
           ) : (
             <CustomCaptionButton />
           )}
+          <CatchUpPoll />
         </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
