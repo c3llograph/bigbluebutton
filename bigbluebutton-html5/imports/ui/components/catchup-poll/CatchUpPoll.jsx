@@ -6,7 +6,9 @@ import Modal from '/imports/ui/components/modal/simple/component';
 import { styles } from './styles';
 import Button from '/imports/ui/components/button/component';
 
-const VotePresentationModal = ({ vote, setVote }) => {
+const VotePresentationModal = (props) => {
+  const [vote, setVote] = useState('');
+
   const handleVoteSubmit = (e) => {
     e.preventDefault();
     console.log(vote);
@@ -34,7 +36,6 @@ const VotePresentationModal = ({ vote, setVote }) => {
 };
 
 function CatchUpPoll(props) {
-  const [vote, setVote] = useState('');
   const handleFeedbackModal = () => {
     const { mountModal } = props;
     mountModal(<VotePresentationModal />);
