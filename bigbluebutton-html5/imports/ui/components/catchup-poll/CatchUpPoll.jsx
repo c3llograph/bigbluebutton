@@ -7,11 +7,11 @@ import { styles } from './styles';
 import Button from '/imports/ui/components/button/component';
 
 const VotePresentationModal = (props) => {
-  const [vote, setVote] = useState('');
+  //   const [vote, setVote] = useState('');
 
   const handleVoteSubmit = (e) => {
     e.preventDefault();
-    console.log(vote);
+    console.log(e.target.value);
   };
   return (
     <Modal
@@ -24,7 +24,7 @@ const VotePresentationModal = (props) => {
         <h3 className={styles.title}>{'Feedback!'}</h3>
       </header>
       <form onSubmit={handleVoteSubmit}>
-        <select name="vote" onChange={(e) => setVote(e.target.value)}>
+        <select name="vote" onChange={(e) => console.log(e.target.value)}>
           <option value="YES">Liked it!</option>
           <option value="AVG">Average!</option>
           <option value="NO">Didn't like it!</option>
