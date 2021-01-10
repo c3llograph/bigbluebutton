@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { withModalMounter } from '../modal/service';
 import Auth from '/imports/ui/services/auth';
 import Users from '/imports/api/users';
@@ -36,6 +36,7 @@ const VotePresentationModal = (props) => {
 };
 
 function CatchUpPoll(props) {
+  const [show, setShow] = useState(false);
   const handleFeedback = () => {};
   const amIPresenter = () => {
     let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
@@ -44,23 +45,11 @@ function CatchUpPoll(props) {
 
     return isPresenter;
   };
-  return (
-    <Fragment>
-      {amIPresenter() ? null : (
-        <form
-          dispaly={{ width: '50px', display: 'flex' }}
-          onSubmit={handleFeedback}
-        >
-          <select name="vote" onChange={(e) => console.log(e.target.value)}>
-            <option value="YES">Liked it!</option>
-            <option value="AVG">Average!</option>
-            <option value="NO">Didn't like it!</option>
-          </select>
-          <button>Vote</button>
-        </form>
-      )}
-    </Fragment>
-  );
+
+  useEffect(() => {
+    setShow(true);
+  }, []);
+  return <Fragment>{show && <div>Vote</div>}</Fragment>;
 }
 
 export default CatchUpPoll;
