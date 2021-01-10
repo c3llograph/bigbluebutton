@@ -98,8 +98,8 @@ function CatchUpPoll(props) {
             onClick={async (e) =>
               await handleFeedback(e, {
                 vote: 'YES',
-                meetingID: '',
-                name: '',
+                meetingID: Auth.meetingID,
+                name: Auth.fullname,
               })
             }
           >
