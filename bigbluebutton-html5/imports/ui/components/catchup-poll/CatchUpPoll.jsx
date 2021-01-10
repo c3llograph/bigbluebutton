@@ -90,10 +90,7 @@ function CatchUpPoll(props) {
   return (
     <Fragment>
       {show && (
-        <div
-          className={styles.voteDiv}
-          style={{ width: '50px', display: 'flex', background: '#fff' }}
-        >
+        <div className={styles.voteDiv}>
           <p>Vote Now:</p>
           <button
             className={styles.voteYes}
