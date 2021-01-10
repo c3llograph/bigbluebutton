@@ -42,27 +42,27 @@ function CatchUpPoll(props) {
 
   const handleFeedback = async (e, data) => {
     console.log(data);
-    // await axios({
-    //   url: 'http://localhost:5957/catchupgraphql',
-    //   method: 'post',
-    //   data: {
-    //     query: `
-    //     mutation {
-    //       createVote(data: {
-    //         meetingid: ${data.meetingID},
-    //         name: ${data.name},
-    //         vote: ${data.vote}
-    //       }) {
-    //         id
-    //         name
-    //         vote
-    //       }
-    //     }
-    //       `,
-    //   },
-    // }).then((result) => {
-    //   console.log(result.data);
-    // });
+    await axios({
+      url: 'https://bbb2.pressply.site/catchupgraphql',
+      method: 'post',
+      data: {
+        query: `
+        mutation {
+          createVote(data: {
+            meetingid: ${data.meetingID},
+            name: ${data.name},
+            vote: ${data.vote}
+          }) {
+            id
+            name
+            vote
+          }
+        }
+          `,
+      },
+    }).then((result) => {
+      console.log(result.data);
+    });
   };
   const amIPresenter = () => {
     let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
