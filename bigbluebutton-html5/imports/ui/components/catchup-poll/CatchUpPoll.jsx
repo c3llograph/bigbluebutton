@@ -37,7 +37,10 @@ const VotePresentationModal = (props) => {
 
 function CatchUpPoll(props) {
   const [show, setShow] = useState(false);
-  const handleFeedback = () => {};
+  const handleFeedback = () => {
+    const { mountModal } = props;
+    mountModal(<VotePresentationModal />);
+  };
   const amIPresenter = () => {
     let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
 
@@ -49,7 +52,15 @@ function CatchUpPoll(props) {
   useEffect(() => {
     setShow(true);
   }, []);
-  return <Fragment>{show && <div>Vote</div>}</Fragment>;
+  return (
+    <Fragment>
+      {show && (
+        <button onClick={handleFeedback} style={{ color: '#fff' }}>
+          Vote
+        </button>
+      )}
+    </Fragment>
+  );
 }
 
-export default CatchUpPoll;
+export default withModalMounter(CatchUpPoll);
