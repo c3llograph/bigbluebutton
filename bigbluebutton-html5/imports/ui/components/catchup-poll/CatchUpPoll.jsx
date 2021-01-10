@@ -53,16 +53,16 @@ function CatchUpPoll(props) {
             name: ${data.name},
             vote: ${data.vote}
           }) {
-            id
-            name
             vote
           }
         }
           `,
       },
-    }).then((result) => {
-      console.log(result.data);
-    });
+    })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => console.log(err));
   };
   const amIPresenter = () => {
     let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
