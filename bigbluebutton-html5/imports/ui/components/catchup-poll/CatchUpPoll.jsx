@@ -79,6 +79,7 @@ function CatchUpPoll(props) {
       meet: Auth.meetingID,
       requesterUserId: Auth.userID,
     });
+    console.log(Auth);
     const UserInfo = UserInfos.find({
       meetingId: Auth.meetingID,
       requesterUserId: Auth.userID,
