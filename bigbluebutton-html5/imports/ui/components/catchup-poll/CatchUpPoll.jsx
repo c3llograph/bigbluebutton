@@ -52,13 +52,15 @@ function CatchUpPoll(props) {
   return (
     <Fragment>
       {show && (
-        <div style={{ width: '50px', display: 'flex' }}>
+        <div style={{ width: '50px', display: 'flex', background: '#fff' }}>
           <p>Feedback:</p>
-          <select name="vote" onChange={(e) => console.log(e.target.value)}>
-            <option value="YES">Liked it!</option>
-            <option value="AVG">Average!</option>
-            <option value="NO">Didn't like it!</option>
-          </select>
+          <form>
+            <select name="vote" onChange={(e) => console.log(e.target.value)}>
+              <option value="YES">Liked it!</option>
+              <option value="AVG">Average!</option>
+              <option value="NO">Didn't like it!</option>
+            </select>
+          </form>
         </div>
       )}
     </Fragment>
