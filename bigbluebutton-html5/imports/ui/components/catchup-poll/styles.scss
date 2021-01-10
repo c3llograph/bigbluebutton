@@ -103,3 +103,39 @@
 .ccbtnclient:hover {
   background: #58a9e3;
 }
+
+.voteDiv {
+  width: auto;
+  display: flex;
+  background: rgb(15 112 215 / 21%);
+  padding: 0 10px;
+  color: #fff;
+  border-radius: 5px;
+}
+.voteYes {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #0f70d7;
+  background: transparent;
+  color: #fff;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: all 0.5s ease-out;
+}
+.voteNo {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #0f70d7;
+  background: transparent;
+  color: #fff;
+  margin-top: 4px;
+  transition: all 0.5s ease-out;
+}
+.voteYes:hover,
+.voteNo:hover {
+  background: #58a9e3;
+}
