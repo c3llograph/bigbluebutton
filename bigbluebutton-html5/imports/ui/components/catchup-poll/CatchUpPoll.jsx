@@ -6,6 +6,7 @@ import Modal from '/imports/ui/components/modal/simple/component';
 import { styles } from './styles';
 import Button from '/imports/ui/components/button/component';
 import axios from 'axios';
+import UserInfos from '/imports/api/users-infos';
 
 const VotePresentationModal = (props) => {
   //   const [vote, setVote] = useState('');
@@ -75,8 +76,11 @@ function CatchUpPoll(props) {
 
   useEffect(() => {
     setShow(true);
-    let user = Users.findOne({ userId: Auth.userID });
-    console.log(user);
+    const UserInfo = UserInfos.find({
+      meetingId: Auth.meetingID,
+      requesterUserId: Auth.userID,
+    }).fetch();
+    console.log(UserInfo);
   }, []);
   return (
     <Fragment>

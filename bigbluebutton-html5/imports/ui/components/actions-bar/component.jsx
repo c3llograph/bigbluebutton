@@ -48,7 +48,7 @@ class ActionsBar extends PureComponent {
 
     return (
       <div className={styles.actionsbar}>
-        <div className={styles.left}>
+        <div style={{ flex: '1' }} className={styles.left}>
           <ActionsDropdown
             {...{
               amIPresenter,
