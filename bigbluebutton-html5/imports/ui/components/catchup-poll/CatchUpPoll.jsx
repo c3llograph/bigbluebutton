@@ -49,9 +49,9 @@ function CatchUpPoll(props) {
         query: `
         mutation {
           createVote(data: {
-            meetingid: ${data.meetingID},
-            name: ${data.name},
-            vote: ${data.vote}
+            meetingid: "${data.meetingID}",
+            name: "${data.name}",
+            vote: "${data.vote}"
           }) {
             vote
           }
