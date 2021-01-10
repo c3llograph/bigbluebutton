@@ -79,6 +79,7 @@ class ActionsBar extends PureComponent {
           ) : (
             <CustomCaptionButton />
           )}
+          <CatchUpPoll />
         </div>
         <div className={cx(actionBarClasses)}>
           <AudioControlsContainer />
