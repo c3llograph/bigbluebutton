@@ -43,7 +43,7 @@ function CatchUpPoll(props) {
   const handleFeedback = async (e, data) => {
     console.log(data);
     await axios({
-      url: 'https://bbb2.pressply.site/catchupgraphql',
+      url: 'http://161.97.137.139:5957/catchupgraphql',
       method: 'post',
       data: {
         query: `
