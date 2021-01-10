@@ -21,7 +21,7 @@ function CustomCaptionButton(props) {
 
   const amIPresenter = () => {
     let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
-
+    console.log({ userData: user });
     let isPresenter = user.role === ROLE_MODERATOR;
 
     return isPresenter;

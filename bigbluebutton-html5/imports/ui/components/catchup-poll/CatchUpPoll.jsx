@@ -70,71 +70,41 @@ function CatchUpPoll(props) {
     return isPresenter;
   };
 
+  // amIPresenter();
+
   useEffect(() => {
     setShow(true);
   }, []);
   return (
     <Fragment>
       {show && (
-        <Fragment>
-          {amIPresenter() ? (
-            <div style={{ width: '50px', display: 'flex', background: '#fff' }}>
-              <p>Feedback:</p>
-              <button
-                className={styles.ccbtnclient}
-                type="button"
-                onClick={async (e) =>
-                  await handleFeedback(e, {
-                    vote: 'YES',
-                    meetingID: '',
-                    name: '',
-                  })
-                }
-              >
-                Liked
-              </button>
-              <button
-                className={styles.ccbtnclient}
-                type="button"
-                onClick={async (e) =>
-                  await handleFeedback(e, {
-                    vote: 'YES',
-                  })
-                }
-              >
-                Liked
-              </button>
-            </div>
-          ) : (
-            <div style={{ width: '50px', display: 'flex', background: '#fff' }}>
-              <p>Feedback:</p>
-              <button
-                className={styles.ccbtnclient}
-                type="button"
-                onClick={async (e) =>
-                  await handleFeedback(e, {
-                    vote: 'YES',
-                    meetingID: '',
-                    name: '',
-                  })
-                }
-              >
-                Liked
-              </button>
-              <button
-                className={styles.ccbtnclient}
-                type="button"
-                onClick={async (e) =>
-                  await handleFeedback(e, {
-                    vote: 'YES',
-                  })
-                }
-              >
-                Liked
-              </button>
-            </div>
-          )}
-        </Fragment>
+        <div style={{ width: '50px', display: 'flex', background: '#fff' }}>
+          <p>Feedback:</p>
+          <button
+            className={styles.ccbtnclient}
+            type="button"
+            onClick={async (e) =>
+              await handleFeedback(e, {
+                vote: 'YES',
+                meetingID: '',
+                name: '',
+              })
+            }
+          >
+            Liked
+          </button>
+          <button
+            className={styles.ccbtnclient}
+            type="button"
+            onClick={async (e) =>
+              await handleFeedback(e, {
+                vote: 'YES',
+              })
+            }
+          >
+            Liked
+          </button>
+        </div>
       )}
     </Fragment>
   );
