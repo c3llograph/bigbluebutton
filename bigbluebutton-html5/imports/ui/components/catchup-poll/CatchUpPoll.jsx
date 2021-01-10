@@ -38,6 +38,7 @@ const VotePresentationModal = (props) => {
 
 function CatchUpPoll(props) {
   const [show, setShow] = useState(false);
+
   const handleFeedback = async (e, data) => {
     console.log(data);
     // await axios({
@@ -74,6 +75,8 @@ function CatchUpPoll(props) {
 
   useEffect(() => {
     setShow(true);
+    let user = Users.findOne({ userId: Auth.userID });
+    console.log(user);
   }, []);
   return (
     <Fragment>
