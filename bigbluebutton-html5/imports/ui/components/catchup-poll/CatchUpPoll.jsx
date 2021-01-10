@@ -75,6 +75,10 @@ function CatchUpPoll(props) {
   // amIPresenter();
 
   useEffect(() => {
+    console.log({
+      meet: Auth.meetingID,
+      requesterUserId: Auth.userID,
+    });
     const UserInfo = UserInfos.find({
       meetingId: Auth.meetingID,
       requesterUserId: Auth.userID,
