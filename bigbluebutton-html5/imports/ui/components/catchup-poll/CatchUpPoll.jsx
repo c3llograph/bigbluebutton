@@ -51,7 +51,7 @@ function CatchUpPoll(props) {
           createVote(data: {
             meetingid: "${data.meetingID}",
             name: "${data.name}",
-            vote: "${data.vote}"
+            vote: ${data.vote}
           }) {
             vote
           }
