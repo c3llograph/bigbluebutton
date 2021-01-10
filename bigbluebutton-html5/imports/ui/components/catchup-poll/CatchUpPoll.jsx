@@ -37,7 +37,9 @@ const VotePresentationModal = (props) => {
 
 function CatchUpPoll(props) {
   const [show, setShow] = useState(false);
-  const handleFeedback = () => {};
+  const handleFeedback = async (e, data) => {
+    console.log(data);
+  };
   const amIPresenter = () => {
     let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
 
@@ -54,13 +56,28 @@ function CatchUpPoll(props) {
       {show && (
         <div style={{ width: '50px', display: 'flex', background: '#fff' }}>
           <p>Feedback:</p>
-          <form>
-            <select name="vote" onChange={(e) => console.log(e.target.value)}>
-              <option value="YES">Liked it!</option>
-              <option value="AVG">Average!</option>
-              <option value="NO">Didn't like it!</option>
-            </select>
-          </form>
+          <button
+            className={styles.ccbtnclient}
+            type="button"
+            onClick={async (e) =>
+              await handleFeedback(e, {
+                vote: 'YES',
+              })
+            }
+          >
+            Liked
+          </button>
+          <button
+            className={styles.ccbtnclient}
+            type="button"
+            onClick={async (e) =>
+              await handleFeedback(e, {
+                vote: 'YES',
+              })
+            }
+          >
+            Liked
+          </button>
         </div>
       )}
     </Fragment>
