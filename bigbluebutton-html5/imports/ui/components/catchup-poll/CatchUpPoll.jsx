@@ -91,7 +91,7 @@ function CatchUpPoll(props) {
     <Fragment>
       {show && (
         <div style={{ width: '50px', display: 'flex', background: '#fff' }}>
-          <p>Feedback:</p>
+          <p>Vote Now:</p>
           <button
             className={styles.ccbtnclient}
             type="button"
@@ -103,18 +103,18 @@ function CatchUpPoll(props) {
               })
             }
           >
-            Liked
+            Yes
           </button>
           <button
             className={styles.ccbtnclient}
             type="button"
             onClick={async (e) =>
               await handleFeedback(e, {
-                vote: 'YES',
+                vote: 'NO',
               })
             }
           >
-            Liked
+            No
           </button>
         </div>
       )}
