@@ -91,12 +91,12 @@ function CatchUpPoll(props) {
     <Fragment>
       {show && (
         <div
-          className="voteDiv"
+          className={styles.voteDiv}
           style={{ width: '50px', display: 'flex', background: '#fff' }}
         >
           <p>Vote Now:</p>
           <button
-            className="voteYes"
+            className={styles.voteYes}
             type="button"
             onClick={async (e) =>
               await handleFeedback(e, {
@@ -109,7 +109,7 @@ function CatchUpPoll(props) {
             Yes
           </button>
           <button
-            className="voteNo"
+            className={styles.voteNo}
             type="button"
             onClick={async (e) =>
               await handleFeedback(e, {
