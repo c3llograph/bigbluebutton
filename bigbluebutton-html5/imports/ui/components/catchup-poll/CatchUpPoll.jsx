@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { withModalMounter } from '../modal/service';
-import Auth from '/imports/ui/services/auth';
-import Users from '/imports/api/users';
-import Modal from '/imports/ui/components/modal/simple/component';
-import { styles } from './styles';
-import Button from '/imports/ui/components/button/component';
-import axios from 'axios';
-import UserInfos from '/imports/api/users-infos';
+import React, { Fragment, useEffect, useState } from "react";
+import { withModalMounter } from "../modal/service";
+import Auth from "/imports/ui/services/auth";
+import Users from "/imports/api/users";
+import Modal from "/imports/ui/components/modal/simple/component";
+import { styles } from "./styles";
+import Button from "/imports/ui/components/button/component";
+import axios from "axios";
+import UserInfos from "/imports/api/users-infos";
 
 const VotePresentationModal = (props) => {
   //   const [vote, setVote] = useState('');
@@ -23,7 +23,7 @@ const VotePresentationModal = (props) => {
       hideBorder
     >
       <header className={styles.header}>
-        <h3 className={styles.title}>{'Feedback!'}</h3>
+        <h3 className={styles.title}>{"Feedback!"}</h3>
       </header>
       <form onSubmit={handleVoteSubmit}>
         <select name="vote" onChange={(e) => console.log(e.target.value)}>
@@ -44,8 +44,8 @@ function CatchUpPoll(props) {
   const handleFeedback = async (e, data) => {
     console.log(data);
     await axios({
-      url: 'https://bbb2.pressply.site/catchupgraphql',
-      method: 'post',
+      url: "https://bbb2.pressply.site/catchupgraphql",
+      method: "post",
       data: {
         query: `
         mutation {
@@ -62,6 +62,7 @@ function CatchUpPoll(props) {
     })
       .then((result) => {
         console.log(result.data);
+        setVoted(true);
       })
       .catch((err) => console.log(err));
   };
@@ -100,7 +101,7 @@ function CatchUpPoll(props) {
                 type="button"
                 onClick={async (e) =>
                   await handleFeedback(e, {
-                    vote: 'YES',
+                    vote: "YES",
                     meetingID: Auth.meetingID,
                     name: Auth.fullname,
                   })
@@ -113,7 +114,7 @@ function CatchUpPoll(props) {
                 type="button"
                 onClick={async (e) =>
                   await handleFeedback(e, {
-                    vote: 'NO',
+                    vote: "NO",
                     meetingID: Auth.meetingID,
                     name: Auth.fullname,
                   })
