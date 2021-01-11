@@ -39,6 +39,7 @@ const VotePresentationModal = (props) => {
 
 function CatchUpPoll(props) {
   const [show, setShow] = useState(false);
+  const [voted, setVoted] = useState(false);
 
   const handleFeedback = async (e, data) => {
     console.log(data);
@@ -91,31 +92,39 @@ function CatchUpPoll(props) {
     <Fragment>
       {show && (
         <div className={styles.voteDiv}>
-          <p>Vote Now:</p>
-          <button
-            className={styles.voteYes}
-            type="button"
-            onClick={async (e) =>
-              await handleFeedback(e, {
-                vote: 'YES',
-                meetingID: Auth.meetingID,
-                name: Auth.fullname,
-              })
-            }
-          >
-            Yes
-          </button>
-          <button
-            className={styles.voteNo}
-            type="button"
-            onClick={async (e) =>
-              await handleFeedback(e, {
-                vote: 'NO',
-              })
-            }
-          >
-            No
-          </button>
+          {!voted ? (
+            <Fragment>
+              <p>Vote Now:</p>
+              <button
+                className={styles.voteYes}
+                type="button"
+                onClick={async (e) =>
+                  await handleFeedback(e, {
+                    vote: 'YES',
+                    meetingID: Auth.meetingID,
+                    name: Auth.fullname,
+                  })
+                }
+              >
+                Yes
+              </button>
+              <button
+                className={styles.voteNo}
+                type="button"
+                onClick={async (e) =>
+                  await handleFeedback(e, {
+                    vote: 'NO',
+                    meetingID: Auth.meetingID,
+                    name: Auth.fullname,
+                  })
+                }
+              >
+                No
+              </button>
+            </Fragment>
+          ) : (
+            <p>Thanks for your vote.</p>
+          )}
         </div>
       )}
     </Fragment>
