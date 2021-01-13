@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { Session } from 'meteor/session';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { Session } from "meteor/session";
 
 const VideoUploaderTag = styled.form`
   width: 100%;
@@ -50,15 +50,15 @@ const VideoUploaderTag = styled.form`
 function VideoUploader(props) {
   const [file, setFile] = useState(null);
   const [percent, setPercent] = useState(0);
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
-  const [fileName, setFileName] = useState('');
-  const [confName, setConfName] = useState('');
-  const [internalMeetingId, setInternalMeetingId] = useState('');
+  const [fileName, setFileName] = useState("");
+  const [confName, setConfName] = useState("");
+  const [internalMeetingId, setInternalMeetingId] = useState("");
 
   useEffect(() => {
-    let meeting = sessionStorage.getItem('BBB_meetingID');
-    let confName = sessionStorage.getItem('BBB_confname');
+    let meeting = sessionStorage.getItem("BBB_meetingID");
+    let confName = sessionStorage.getItem("BBB_confname");
 
     setConfName(confName);
     setInternalMeetingId(meeting);
@@ -67,13 +67,13 @@ function VideoUploader(props) {
   const onFormSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('external-video', file);
-    formData.append('confName', confName);
-    formData.append('internalMeetingId', internalMeetingId);
+    formData.append("external-video", file);
+    formData.append("confName", confName);
+    formData.append("internalMeetingId", internalMeetingId);
 
     const config = {
       headers: {
-        'content-type': 'multipart/form-data',
+        "content-type": "multipart/form-data",
       },
       onUploadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
@@ -89,7 +89,7 @@ function VideoUploader(props) {
     };
 
     axios
-      .post('https://bbb2.pressply.site/upload/video', formData, config)
+      .post("https://api.catchupnews.live/upload/video", formData, config)
       .then((res) => {
         setPercent(100);
         setUrl(res.data.videoUrl);
@@ -107,17 +107,16 @@ function VideoUploader(props) {
   const setExternalVideoWatch = (e, vidurl) => {
     e.preventDefault();
 
-    props.shareExternal(`https://bbb2.pressply.site/${vidurl}`);
-    console.log(`https://bbb2.pressply.site/${vidurl}`);
+    props.shareExternal(`https://api.catchupnews.live/${vidurl}`);
   };
 
   const resetUpload = (e) => {
     e.preventDefault();
     setFile(null);
     setPercent(0);
-    setUrl('');
+    setUrl("");
     setIsUploading(false);
-    setFileName('');
+    setFileName("");
   };
 
   return (
