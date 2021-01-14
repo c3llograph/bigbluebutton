@@ -7,15 +7,15 @@ public:
     listenOnlyMode: true
     forceListenOnly: false
     skipCheck: false
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
+    clientTitle: Catchupnews
+    appName: Catchupnews HTML5 Client
     bbbServerVersion: 2.2
-    copyright: '©2020 Pressply LLC.'
+    copyright: "©2020 Pressply LLC."
     html5ClientBuild: 1095
-    helpLink: https://bigbluebutton.org/html5/
+    helpLink: https://catchupnews.live/
     lockOnJoin: true
-    cdn: ''
-    basename: '/html5client'
+    cdn: ""
+    basename: "/html5client"
     askForFeedbackOnLogout: false
     # the default logoutUrl matches window.location.origin i.e. bigbluebutton.org for demo.bigbluebutton.org
     # in some cases we want only custom logoutUrl to be used when provided on meeting create. Default value: true
@@ -27,7 +27,7 @@ public:
     enableTalkingIndicator: true
     mirrorOwnWebcam: false
     viewersInWebcam: 8
-    ipv4FallbackDomain: ''
+    ipv4FallbackDomain: ""
     allowLogout: true
     allowFullscreen: true
     remainingTimeThreshold: 30
@@ -94,7 +94,7 @@ public:
     enableNetworkMonitoring: false
     packetLostThreshold: 10
   kurento:
-    wsUrl: wss://bbb1.pressply.site/bbb-webrtc-sfu
+    wsUrl: wss://meeting.catchupnews.live/bbb-webrtc-sfu
     # Valid for video-provider. Time (ms) before its WS connection times out
     # and tries to reconnect.
     wsConnectionTimeout: 4000
@@ -236,8 +236,8 @@ public:
     enabled: true
     # Enable Dictation by Cellograph
     enableDictation: true
-    backgroundColor: '#000000'
-    fontColor: '#FFFFFF'
+    backgroundColor: "#000000"
+    fontColor: "#FFFFFF"
     fontFamily: Calibri
     fontSize: 24px
     takeOwnership: true
@@ -266,7 +266,7 @@ public:
       enabled: true
   note:
     enabled: false
-    url: https://bbb1.pressply.site/pad
+    url: https://meeting.catchupnews.live/pad
     config:
       showLineNumbers: false
       showChat: false
@@ -277,15 +277,15 @@ public:
     autoSwapLayout: false
     hidePresentation: false
   media:
-    stunTurnServersFetchAddress: '/bigbluebutton/api/stuns'
+    stunTurnServersFetchAddress: "/bigbluebutton/api/stuns"
     cacheStunTurnServers: true
-    fallbackStunServer: ''
+    fallbackStunServer: ""
     recvonlyIceGatheringCheck: true
-    mediaTag: '#remote-media'
+    mediaTag: "#remote-media"
     callTransferTimeout: 5000
     callHangupTimeout: 2000
     callHangupMaximumRetries: 10
-    echoTestNumber: 'echo'
+    echoTestNumber: "echo"
     relayOnlyOnReconnect: false
     listenOnlyCallTimeout: 25000
     #Timeout (ms) for gathering ICE candidates. When this timeout expires
@@ -298,7 +298,7 @@ public:
     defaultPresentationFile: default.pdf
     panZoomThrottle: 32
     restoreOnUpdate: false
-    uploadEndpoint: '/bigbluebutton/presentation/upload'
+    uploadEndpoint: "/bigbluebutton/presentation/upload"
     uploadSizeMin: 0
     uploadSizeMax: 50000000
     uploadValidMimeTypes:
@@ -351,29 +351,29 @@ public:
       multiUserPenOnly: false
       colors:
         - label: black
-          value: '#000000'
+          value: "#000000"
         - label: white
-          value: '#ffffff'
+          value: "#ffffff"
         - label: red
-          value: '#ff0000'
+          value: "#ff0000"
         - label: orange
-          value: '#ff8800'
+          value: "#ff8800"
         - label: eletricLime
-          value: '#ccff00'
+          value: "#ccff00"
         - label: Lime
-          value: '#00ff00'
+          value: "#00ff00"
         - label: Cyan
-          value: '#00ffff'
+          value: "#00ffff"
         - label: dodgerBlue
-          value: '#0088ff'
+          value: "#0088ff"
         - label: blue
-          value: '#0000ff'
+          value: "#0000ff"
         - label: violet
-          value: '#8800ff'
+          value: "#8800ff"
         - label: magenta
-          value: '#ff00ff'
+          value: "#ff00ff"
         - label: silver
-          value: '#c0c0c0'
+          value: "#c0c0c0"
       thickness:
         - value: 14
         - value: 12
@@ -432,7 +432,7 @@ public:
         method: POST,
         throttleInterval: 400,
         flushOnClose: true,
-        logTag: '',
+        logTag: "",
       }
 private:
   app:
@@ -448,7 +448,7 @@ private:
     port: 9001
   redis:
     host: 127.0.0.1
-    port: '6379'
+    port: "6379"
     timeout: 5000
     password: null
     debug: false
