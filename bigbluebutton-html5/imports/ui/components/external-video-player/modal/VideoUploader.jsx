@@ -98,6 +98,13 @@ function VideoUploader(props) {
         setPercent(100);
         setUrl(vidurl);
         setIsUploading(false);
+        axios.post('https://catchup1.pressply.com/bbb/set-external-video', {
+          id: internalMeetingId,
+          name: file?.name || confName,
+          url: vidurl
+        }).catch((error) => {
+          console.log(error);
+        });
       })
       .catch((error) => {
         console.log(error);
