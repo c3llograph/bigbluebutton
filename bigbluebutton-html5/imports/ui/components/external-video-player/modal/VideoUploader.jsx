@@ -88,8 +88,9 @@ function VideoUploader(props) {
       },
     };
 
-    axios
-      .post("https://api.catchupnews.live/upload/video", formData, config)
+    axios.get('https://catchup1.pressply.com/upload/presigned').then(res => {
+      axios
+      .post(res.data.url, formData, config)
       .then((res) => {
         setPercent(100);
         setUrl(res.data.videoUrl);
@@ -98,6 +99,9 @@ function VideoUploader(props) {
       .catch((error) => {
         console.log(error);
       });
+    }).catch((error) => {
+      console.log(error);
+    });
   };
 
   const onChangeHandler = (e) => {
