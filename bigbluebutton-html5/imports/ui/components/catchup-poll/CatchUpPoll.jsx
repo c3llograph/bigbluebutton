@@ -43,28 +43,37 @@ function CatchUpPoll(props) {
 
   const handleFeedback = async (e, data) => {
     console.log(data);
-    await axios({
-      url: "https://api.catchupnews.live/catchupgraphql",
-      method: "post",
-      data: {
-        query: `
-        mutation {
-          createVote(data: {
-            meetingid: "${data.meetingID}",
-            name: "${data.name}",
-            vote: ${data.vote}
-          }) {
-            vote
-          }
-        }
-          `,
-      },
+    await axios.post(`https://catchup1.pressply.com/bbb/create-vote`,{
+      vote: data.vote,
+      id: data.meetingID,
+      name: data.name
+    }).then((result) => {
+      console.log(result.data);
+      setVoted(true);
     })
-      .then((result) => {
-        console.log(result.data);
-        setVoted(true);
-      })
-      .catch((err) => console.log(err));
+    .catch((err) => console.log(err));
+    // await axios({
+    //   url: "https://api.catchupnews.live/catchupgraphql",
+    //   method: "post",
+    //   data: {
+    //     query: `
+    //     mutation {
+    //       createVote(data: {
+    //         meetingid: "${data.meetingID}",
+    //         name: "${data.name}",
+    //         vote: ${data.vote}
+    //       }) {
+    //         vote
+    //       }
+    //     }
+    //       `,
+    //   },
+    // })
+    //   .then((result) => {
+    //     console.log(result.data);
+    //     setVoted(true);
+    //   })
+    //   .catch((err) => console.log(err));
   };
   const amIPresenter = () => {
     let user = Users.findOne({ userId: Auth.userID }, { fields: { role: 1 } });
