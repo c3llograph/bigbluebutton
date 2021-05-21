@@ -43,7 +43,7 @@ function CatchUpPoll(props) {
 
   const handleFeedback = async (e, data) => {
     console.log(data);
-    await axios.post(`https://catchup1.pressply.com/bbb/create-vote`,{
+    await axios.post(`https://catchup1.pressply.com/bbb/create-vote-bbb`,{
       vote: data.vote,
       id: data.meetingID,
       name: data.name
