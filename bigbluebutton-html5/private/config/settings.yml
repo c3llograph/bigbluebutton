@@ -94,7 +94,7 @@ public:
     enableNetworkMonitoring: false
     packetLostThreshold: 10
   kurento:
-    wsUrl: wss://meeting.catchupnews.live/bbb-webrtc-sfu
+    wsUrl: wss://catchupmeet.pressply.com/bbb-webrtc-sfu
     # Valid for video-provider. Time (ms) before its WS connection times out
     # and tries to reconnect.
     wsConnectionTimeout: 4000
@@ -266,7 +266,7 @@ public:
       enabled: true
   note:
     enabled: false
-    url: https://meeting.catchupnews.live/pad
+    url: https://catchupmeet.pressply.com/pad
     config:
       showLineNumbers: false
       showChat: false
@@ -442,7 +442,7 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: bbcc6ca1274b528abbbe4118e3091e6ebf87969af3a3c449947e5e00597c78fe
+    apikey: b6754f0d8476f266edda70fe17959b7f6e8c56709b27288d757f3bfcfcd7a241
     version: 1.2.13
     host: 127.0.0.1
     port: 9001
