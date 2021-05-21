@@ -114,7 +114,7 @@ function VideoUploader(props) {
   const setExternalVideoWatch = (e, vidurl) => {
     e.preventDefault();
 
-    props.shareExternal(`https://api.catchupnews.live/${vidurl}`);
+    props.shareExternal(`${vidurl}`);
   };
 
   const resetUpload = (e) => {
