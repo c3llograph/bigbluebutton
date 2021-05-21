@@ -93,7 +93,7 @@ function VideoUploader(props) {
     axios.get('https://catchup1.pressply.com/upload/presigned').then(res => {
       vidurl = `https://pressply-dev.s3.eu-west-2.amazonaws.com/${res.data.key}`
       axios
-      .post(res.data.url, file, config)
+      .put(res.data.url, file, config)
       .then((res) => {
         setPercent(100);
         setUrl(vidurl);
