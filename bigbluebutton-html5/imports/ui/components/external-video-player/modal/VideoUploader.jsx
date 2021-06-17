@@ -93,7 +93,7 @@ function VideoUploader(props) {
     axios
       .get('https://bapi.partemfructus.com/upload/presigned')
       .then((res) => {
-        vidurl = `https://partemfructus.s3.eu-west-2.amazonaws.com/${res.data.key}`;
+        vidurl = `https://partemfructus-prod.s3.eu-west-2.amazonaws.com/${res.data.key}`;
         axios
           .put(res.data.url, file, config)
           .then((res) => {
