@@ -15,6 +15,7 @@ const getPadParams = () => {
     { userId: Auth.userID },
     { fields: { name: 1, color: 1 } }
   );
+  console.log(User);
   config.userName = User.name;
   config.userColor = User.color;
   config.lang = getLang();
