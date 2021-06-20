@@ -225,15 +225,8 @@ class Pad extends PureComponent {
   }
 
   render() {
-    const {
-      locale,
-      intl,
-      padId,
-      readOnlyPadId,
-      ownerId,
-      name,
-      amIModerator,
-    } = this.props;
+    const { locale, intl, padId, readOnlyPadId, ownerId, name, amIModerator } =
+      this.props;
 
     if (!amIModerator) {
       Session.set('openPanel', 'userlist');
@@ -242,7 +235,8 @@ class Pad extends PureComponent {
 
     const { listening } = this.state;
     const url = PadService.getPadURL(padId, readOnlyPadId, ownerId);
-    console.log({ url });
+    console.log({ url, ownerId });
+    console.log(CaptionsService.canIDictateThisPad(ownerId));
     return (
       <div className={styles.pad}>
         <header className={styles.header}>
