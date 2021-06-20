@@ -7,15 +7,15 @@ public:
     listenOnlyMode: true
     forceListenOnly: false
     skipCheck: false
-    clientTitle: Catchupnews
-    appName: Catchupnews HTML5 Client
+    clientTitle: Partemfructus
+    appName: Partemfructus HTML5 Client
     bbbServerVersion: 2.2
-    copyright: "©2020 Pressply LLC."
-    html5ClientBuild: 1095
-    helpLink: https://catchup2.pressply.com/
+    copyright: '©2021 BigBlueButton Inc.'
+    html5ClientBuild: 1157
+    helpLink: https://pressply.com/
     lockOnJoin: true
-    cdn: ""
-    basename: "/html5client"
+    cdn: ''
+    basename: '/html5client'
     askForFeedbackOnLogout: false
     # the default logoutUrl matches window.location.origin i.e. bigbluebutton.org for demo.bigbluebutton.org
     # in some cases we want only custom logoutUrl to be used when provided on meeting create. Default value: true
@@ -27,7 +27,7 @@ public:
     enableTalkingIndicator: true
     mirrorOwnWebcam: false
     viewersInWebcam: 8
-    ipv4FallbackDomain: ""
+    ipv4FallbackDomain: ''
     allowLogout: true
     allowFullscreen: true
     remainingTimeThreshold: 30
@@ -36,6 +36,7 @@ public:
     # can generate excessive overhead to the server. We recommend
     # this value to be kept under 12.
     breakoutRoomLimit: 8
+    # https://github.com/bigbluebutton/bigbluebutton/pull/10826
     customHeartbeat: false
     defaultSettings:
       application:
@@ -46,6 +47,25 @@ public:
         userJoinPushAlerts: false
         fallbackLocale: en
         overrideLocale: null
+        #Audio constraints for microphone. Use this to control browser's
+        #filters, such as AGC (Auto Gain Control) , Echo Cancellation,
+        #Noise Supression, etc.
+        #For more deails, see:
+        # https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints
+        #Currently, google chrome sets {ideal: true} for autoGainControl,
+        #echoCancellation and noiseSuppression, if not set.
+        #The accepted value for each constraint is an object of type
+        #https://developer.mozilla.org/en-US/docs/Web/API/ConstrainBoolean
+        #These values are used as initial constraints for every new participant,
+        #and can be changed by user in: Settings > Application > Microphone
+        #Audio Filters.
+        # microphoneConstraints:
+        #   autoGainControl:
+        #     ideal: true
+        #   echoCancellation:
+        #     ideal: true
+        #   noiseSuppression:
+        #     ideal: true
       audio:
         inputDeviceId: undefined
         outputDeviceId: undefined
@@ -94,14 +114,16 @@ public:
     enableNetworkMonitoring: false
     packetLostThreshold: 10
   kurento:
-    wsUrl: wss://catchupmeet.pressply.com/bbb-webrtc-sfu
+    wsUrl: wss://presentation.partemfructus.com/bbb-webrtc-sfu
     # Valid for video-provider. Time (ms) before its WS connection times out
     # and tries to reconnect.
     wsConnectionTimeout: 4000
+    # Time in milis to wait for the browser to return a gUM call (used in video-preview)
+    gUMTimeout: 20000
     cameraTimeouts:
       # Base camera timeout: used as the camera *sharing* timeout and
       # as the minimum camera subscribe reconnection timeout
-      baseTimeout: 15000
+      baseTimeout: 30000
       # Max timeout: used as the max camera subscribe reconnection timeout. Each
       # subscribe reattempt increases the reconnection timer up to this
       maxTimeout: 60000
@@ -194,7 +216,7 @@ public:
     #   profile: a camera profile id from the cameraProfiles configuration array
     #            that will be applied to all cameras when threshold is hit
     cameraQualityThresholds:
-      enabled: false
+      enabled: true
       thresholds:
         - threshold: 8
           profile: low-u8
@@ -210,7 +232,7 @@ public:
           profile: low-u30
     pagination:
       # whether to globally enable or disable pagination.
-      enabled: false
+      enabled: true
       # how long (in ms) the negotiation will be debounced after a page change.
       pageChangeDebounceTime: 2500
       # video page sizes for DESKTOP endpoints. It stands for the number of SUBSCRIBER streams.
@@ -218,11 +240,11 @@ public:
       # A page size of 0 (zero) means that the page size is unlimited (disabled).
       desktopPageSizes:
         moderator: 0
-        viewer: 5
+        viewer: 0
       # video page sizes for MOBILE endpoints
       mobilePageSizes:
-        moderator: 2
-        viewer: 2
+        moderator: 6
+        viewer: 4
   pingPong:
     clearUsersInSeconds: 180
     pongTimeInSeconds: 15
@@ -234,10 +256,9 @@ public:
     max_custom: 5
   captions:
     enabled: true
-    # Enable Dictation by Cellograph
-    enableDictation: true
-    backgroundColor: "#000000"
-    fontColor: "#FFFFFF"
+    enableDictation: false
+    backgroundColor: '#000000'
+    fontColor: '#FFFFFF'
     fontFamily: Calibri
     fontSize: 24px
     takeOwnership: true
@@ -265,27 +286,21 @@ public:
     typingIndicator:
       enabled: true
   note:
-    enabled: false
-    url: https://catchupmeet.pressply.com/pad
-    config:
-      showLineNumbers: false
-      showChat: false
-      noColors: true
-      showControls: true
-      rtl: false
+    enabled: true
+    url: https://presentation.partemfructus.com/pad
   layout:
     autoSwapLayout: false
     hidePresentation: false
   media:
-    stunTurnServersFetchAddress: "/bigbluebutton/api/stuns"
+    stunTurnServersFetchAddress: '/bigbluebutton/api/stuns'
     cacheStunTurnServers: true
-    fallbackStunServer: ""
+    fallbackStunServer: ''
     recvonlyIceGatheringCheck: true
-    mediaTag: "#remote-media"
+    mediaTag: '#remote-media'
     callTransferTimeout: 5000
     callHangupTimeout: 2000
     callHangupMaximumRetries: 10
-    echoTestNumber: "echo"
+    echoTestNumber: 'echo'
     relayOnlyOnReconnect: false
     listenOnlyCallTimeout: 25000
     #Timeout (ms) for gathering ICE candidates. When this timeout expires
@@ -293,12 +308,26 @@ public:
     #so far. Increasing this value might help avoiding 1004 error when
     #user activates microphone.
     iceGatheringTimeout: 5000
-    sipjsHackViaWs: false
+    sipjsHackViaWs: true
+    # Mute/umute toggle throttle time
+    toggleMuteThrottleTime: 300
+    #Websocket keepAlive interval (seconds). You may set this to prevent
+    #websocket disconnection in some environments. When set, BBB will send
+    #'\r\n\r\n' string through SIP.js's websocket. If not set, default value
+    #is 0.
+    websocketKeepAliveInterval: 30
+    #Debounce time (seconds) for sending SIP.js's websocket keep alive message.
+    #If not set, default value is 10.
+    websocketKeepAliveDebounce: 10
+    #Trace sip/audio messages in browser. If not set, default value is false.
+    traceSip: false
+    # SDP semantics: plan-b|unified-plan
+    sdpSemantics: 'unified-plan'
   presentation:
     defaultPresentationFile: default.pdf
     panZoomThrottle: 32
     restoreOnUpdate: false
-    uploadEndpoint: "/bigbluebutton/presentation/upload"
+    uploadEndpoint: '/bigbluebutton/presentation/upload'
     uploadSizeMin: 0
     uploadSizeMax: 50000000
     uploadValidMimeTypes:
@@ -342,6 +371,8 @@ public:
     role_moderator: MODERATOR
     role_viewer: VIEWER
   whiteboard:
+    annotationsQueueProcessInterval: 60
+    cursorInterval: 150
     annotations:
       status:
         start: DRAW_START
@@ -351,29 +382,29 @@ public:
       multiUserPenOnly: false
       colors:
         - label: black
-          value: "#000000"
+          value: '#000000'
         - label: white
-          value: "#ffffff"
+          value: '#ffffff'
         - label: red
-          value: "#ff0000"
+          value: '#ff0000'
         - label: orange
-          value: "#ff8800"
+          value: '#ff8800'
         - label: eletricLime
-          value: "#ccff00"
+          value: '#ccff00'
         - label: Lime
-          value: "#00ff00"
+          value: '#00ff00'
         - label: Cyan
-          value: "#00ffff"
+          value: '#00ffff'
         - label: dodgerBlue
-          value: "#0088ff"
+          value: '#0088ff'
         - label: blue
-          value: "#0000ff"
+          value: '#0000ff'
         - label: violet
-          value: "#8800ff"
+          value: '#8800ff'
         - label: magenta
-          value: "#ff00ff"
+          value: '#ff00ff'
         - label: silver
-          value: "#c0c0c0"
+          value: '#c0c0c0'
       thickness:
         - value: 14
         - value: 12
@@ -428,11 +459,11 @@ public:
       {
         enabled: false,
         level: info,
-        url: https://LOG_HOST/html5Log,
+        url: 'https://LOG_HOST/html5Log',
         method: POST,
         throttleInterval: 400,
         flushOnClose: true,
-        logTag: "",
+        logTag: '',
       }
 private:
   app:
@@ -442,16 +473,21 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: b6754f0d8476f266edda70fe17959b7f6e8c56709b27288d757f3bfcfcd7a241
+    apikey: vkff5mHSYTzM9qDMGbGMdgxFMMRZOSzzWIoDCLjUl5tPrkghdNmAyxyywJv1FiNV
     version: 1.2.13
     host: 127.0.0.1
     port: 9001
   redis:
     host: 127.0.0.1
-    port: "6379"
+    port: '6379'
     timeout: 5000
     password: null
     debug: false
+    metrics:
+      queueMetrics: false
+      metricsDumpIntervalMs: 60000
+      metricsFolderPath: METRICS_FOLDER
+      removeMeetingOnEnd: true
     channels:
       toAkkaApps: to-akka-apps-redis-channel
       toThirdParty: to-third-party-redis-channel
@@ -474,7 +510,10 @@ private:
     leak:
       enabled: false
     heapdump:
+      thresholdMb: 1024
       enabled: false
+      heapdumpFolderPath: HEAPDUMP_FOLDER
+      heapdumpIntervalMs: 3600000
   minBrowserVersions:
     - browser: chrome
       version: 72
