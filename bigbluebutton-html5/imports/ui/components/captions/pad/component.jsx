@@ -272,7 +272,28 @@ class Pad extends PureComponent {
                   : intl.formatMessage(intlMessages.dictationOnDesc)}
               </div>
             </span>
-          ) : null}
+          ) : (
+            <span>
+              <Button
+                onClick={() => {
+                  this.toggleListen();
+                }}
+                label={
+                  listening
+                    ? intl.formatMessage(intlMessages.dictationStop)
+                    : intl.formatMessage(intlMessages.dictationStart)
+                }
+                aria-describedby="dictationBtnDesc"
+                color="primary"
+                disabled={!this.recognition}
+              />
+              <div id="dictationBtnDesc" hidden>
+                {listening
+                  ? intl.formatMessage(intlMessages.dictationOffDesc)
+                  : intl.formatMessage(intlMessages.dictationOnDesc)}
+              </div>
+            </span>
+          )}
           {CaptionsService.canIOwnThisPad(ownerId) ? (
             <Button
               color="primary"
