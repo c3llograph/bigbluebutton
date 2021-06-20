@@ -288,6 +288,12 @@ public:
   note:
     enabled: true
     url: https://presentation.partemfructus.com/pad
+    config:
+      showLineNumbers: false
+      showChat: false
+      noColors: true
+      showControls: true
+      rtl: false
   layout:
     autoSwapLayout: false
     hidePresentation: false
