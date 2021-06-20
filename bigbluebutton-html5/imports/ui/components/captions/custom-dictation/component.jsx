@@ -150,23 +150,22 @@ class component extends React.Component {
   }
 
   render() {
-    const {
-      locale,
-      intl,
-      padId,
-      readOnlyPadId,
-      ownerId,
-      name,
-      amIModerator,
-    } = this.props;
+    const { locale, intl, padId, readOnlyPadId, ownerId, name, amIModerator } =
+      this.props;
     const { listening } = this.state;
+    console.log({
+      ll: CaptionsService.canIDictateThisPad(ownerId),
+      ownerId,
+    });
     const url = PadService.getPadURL(padId, readOnlyPadId, ownerId);
 
     return (
       <>
         {CaptionsService.canIDictateThisPad(ownerId) ? (
           <button>{listening ? 'Stop Dictation' : 'Start Dictation'}</button>
-        ) : null}
+        ) : (
+          'TEST123'
+        )}
         {listening ? (
           <div style={{ display: 'none' }}>
             <span>{intl.formatMessage(intlMessages.interimResult)}</span>
